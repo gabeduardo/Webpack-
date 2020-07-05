@@ -1,1 +1,3 @@
-alert("Hola mundo");
+import { sayHello } from "./greetings";
+
+sayHello();

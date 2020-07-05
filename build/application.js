@@ -86,14 +86,27 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/greetings.js":
+/*!**************************!*\
+  !*** ./src/greetings.js ***!
+  \**************************/
+/*! exports provided: sayHello */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"sayHello\", function() { return sayHello; });\nfunction sayHello() {\n  var greet = \"Webpack\";\n  alert(\"Hello world from \".concat(greet, \" with ES6 \"));\n}\n\n\n\n//# sourceURL=webpack:///./src/greetings.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("alert(\"Hola mundo\");\n\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _greetings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./greetings */ \"./src/greetings.js\");\n\nObject(_greetings__WEBPACK_IMPORTED_MODULE_0__[\"sayHello\"])();\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
