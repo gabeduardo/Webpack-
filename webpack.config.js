@@ -1,4 +1,6 @@
 const path = require("path");
+// plugin para separar los css en archivos diferentes
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "development",
   devtool: "cheap-module-eval-source-map",
@@ -35,7 +37,9 @@ module.exports = {
         // primero se aplica de derecha a izquierda
         test: /\.css$/i,
         use: [
-          "style-loader",
+          // "style-loader",
+          // coloco el plugin para injectarlos en archivos separados
+          MiniCssExtractPlugin.loader,
           { loader: "css-loader", options: { importLoaders: 1 } },
           {
             loader: "postcss-loader",
@@ -54,7 +58,10 @@ module.exports = {
         //loader for handling scss. sass-loader is called first which in turn calls node-sass
         test: /\.scss$/i,
         use: [
-          "style-loader",
+          // style loader injecta los estilos en el html
+          //"style-loader",
+          // coloco el plugin para injectarlos en archivos separados
+          MiniCssExtractPlugin.loader,
           { loader: "css-loader", options: { importLoaders: 1 } },
           {
             loader: "postcss-loader",
@@ -71,4 +78,10 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "application.css",
+    }),
+  ],
 };
