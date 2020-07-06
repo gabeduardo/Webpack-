@@ -34,12 +34,40 @@ module.exports = {
         // style inyecta el css en le html
         // primero se aplica de derecha a izquierda
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: [
+                require("autoprefixer")({
+                  overrideBrowserslist: ["last 3 versions", "ie >9"],
+                }),
+              ],
+            },
+          },
+          "sass-loader",
+        ],
       },
       {
         //loader for handling scss. sass-loader is called first which in turn calls node-sass
         test: /\.scss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: [
+                require("autoprefixer")({
+                  overrideBrowserslist: ["last 3 versions", "ie >9"],
+                }),
+              ],
+            },
+          },
+          "sass-loader",
+        ],
       },
     ],
   },
