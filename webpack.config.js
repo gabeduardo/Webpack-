@@ -36,6 +36,11 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        //loader for handling scss. sass-loader is called first which in turn calls node-sass
+        test: /\.scss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
     ],
   },
 };
