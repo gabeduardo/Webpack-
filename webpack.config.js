@@ -1,7 +1,7 @@
 const path = require("path");
 module.exports = {
   mode: "development",
-
+  devtool: "cheap-module-eval-source-map",
   watch: true,
   entry: "./src/index.js",
   output: {
@@ -28,6 +28,13 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+      },
+      {
+        //   style para aplicarlo al htmll y el css- loader para cargar el css
+        // style inyecta el css en le html
+        // primero se aplica de derecha a izquierda
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
