@@ -1,9 +1,17 @@
 const path = require("path");
+
 // plugin para separar los css en archivos diferentes
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+// plugin necesario para minificar el CSS, ya que con el mode : production solo se minficaria el html
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// TerserJSplugin ya viene instalado en webpack por defecto, pero al tocar lo opción de optimization
+// debe especificarse explícitamente que este plugin será usado para minificar el JS
+const TerserJSPlugin = require("terser-webpack-plugin");
 module.exports = {
-  mode: "development",
+  mode: "production",
   devtool: "cheap-module-eval-source-map",
+
   watch: true,
   entry: "./src/index.js",
   output: {
@@ -18,6 +26,9 @@ module.exports = {
     // para no hardcodear la ruta
     filename: "application.js",
     path: path.resolve(__dirname, "build"),
+  },
+  optimization: {
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
   },
   module: {
     rules: [
