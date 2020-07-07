@@ -89,7 +89,10 @@ module.exports = {
       },
       // configuracion para manejar imagenes
       {
-        test: /\.(png|jpg|gif|svg)$/i,
+        // agregado manejo de fuentes file extensions like woff2, eot, ttf etc,
+        // that it's possible to load with the file-loader,
+        // but you can basically add any other type of file, loaders are here for that purpose
+        test: /(png|jpg|gif|svg|woff2?|eot|ttf|otf|wav)(\?.*)?$/i,
         use: [
           {
             loader: "url-loader",
@@ -98,6 +101,8 @@ module.exports = {
               name: "[name].[hash:7].[ext]",
             },
           },
+          //loader para comprimir las imágenes
+          { loader: "image-webpack-loader" },
         ],
       },
     ],
