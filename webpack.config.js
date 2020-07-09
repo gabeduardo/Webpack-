@@ -13,7 +13,13 @@ module.exports = {
   devtool: "cheap-module-eval-source-map",
 
   watch: true,
-  entry: "./src/index.js",
+
+  //especificando dos archivos como entry para el config de webpack
+  entry: {
+    application: "./src/index.js",
+    admin: "./src/admin.js",
+  },
+
   output: {
     //esto crea el archivo en la carpeta dist por la webpack zero conf
     // filename: "main.js",
@@ -24,7 +30,11 @@ module.exports = {
     //pero para separar el folder del name puedo hacer uso de path
     // como el path debe ser absolute hago uso del modulo de node llamado path
     // para no hardcodear la ruta
-    filename: "application.js",
+    // filename: "application.js",
+
+    // para utilizar los nombre especificados como entry, de manera tal que sean
+    // tomados como output debo utilizar el placeholder [name]
+    filename: "[name]-[contenthash].js",
     path: path.resolve(__dirname, "build"),
   },
   optimization: {
@@ -110,7 +120,8 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "application.css",
+      // placeholder para que se generen tambien varios css
+      filename: "[name]-[contenthash].css",
     }),
   ],
 };
