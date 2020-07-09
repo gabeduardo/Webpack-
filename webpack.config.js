@@ -3,6 +3,12 @@ const path = require("path");
 // plugin para separar los css en archivos diferentes
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+//plugin para limpiar archivos cache
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+//plugin para cargar mi template html y así poder generar el html con los hash automáticamente
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 // plugin necesario para minificar el CSS, ya que con el mode : production solo se minficaria el html
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // TerserJSplugin ya viene instalado en webpack por defecto, pero al tocar lo opción de optimization
@@ -119,6 +125,12 @@ module.exports = {
   },
 
   plugins: [
+    // plugin para cargar el template html que creé
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+    new CleanWebpackPlugin(),
+
     new MiniCssExtractPlugin({
       // placeholder para que se generen tambien varios css
       filename: "[name]-[contenthash].css",
